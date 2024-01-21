@@ -1,7 +1,14 @@
+using BulkyWeb.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//getconnectionstring is a helper function
+//when we add something in service we can directly get in controller's constructor---> Dependency injection
+builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

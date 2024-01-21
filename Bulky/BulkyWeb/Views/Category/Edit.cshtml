@@ -1,0 +1,44 @@
+﻿@*passed category values in get action method *@
+@model Category
+
+<form method="post">
+    @*if in update new record being added write this*@
+    @* <input asp-for="Id" hidden />*@
+    <div class="border p-5 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit category</h2>
+            <hr />
+        </div>
+        @*modelonly will show error of feild related only the custum error with no key value*@
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Name" class="p-0"></label>
+            @*tag helper for binding the input*@
+            <input asp-for="Name" class="form-control" />
+            @*showing validation error*@
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="DisplayOrder" class="p-0"></label>
+            <input asp-for="DisplayOrder" class="form-control" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3 ">
+                <button type="submit" class="btn btn-primary form-control ">Update</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary form-control">Back</a>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@*for client side validation we have javascript in partial view (shared folder) *@
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
